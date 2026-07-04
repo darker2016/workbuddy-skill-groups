@@ -1,0 +1,91 @@
+MIT License
+
+Copyright (c) 2026 darker2016 (WorkBuddy Expert Teams Skill Hub)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Attribution / 第三方归属
+
+本仓库收录的内容并非全部原创。当您使用、再发布、修改或分发本仓库内容时，请务必遵照下列归属声明保留原始作者署名，并同时遵守原始许可证的条款（MIT 或其他）。
+
+1. **一人企业方法论（One Person Company / OPC）系列**
+   - 原作者：Easychen（easychen）
+   - 原始仓库：<https://github.com/easychen/opc-methodology>
+   - 许可证：MIT
+
+2. **AST-based Humanize PPT 系列**
+   - 原作者：LearnPrompt 团队（公众号 LearnPrompt）
+   - 原始仓库：<https://github.com/LearnPrompt/humanize-ppt>
+   - 许可证：MIT
+
+3. **腾讯自选股股票投研系列（stock-partner-skills）**
+   - 原始作者：`jensonli@tencent.com`
+   - 原始分发：腾讯自选股 WorkBuddy 专家包
+   - 版权归属：腾讯自选股团队
+
+4. **刺桐说 Pro（citongshuopro-skills）**
+   - 原始作者：杜哥学量化
+   - 版权归属：原作者
+
+5. **卡尔的人感 PPT（humanize-ppt-skills 中 OPC 分支与 HTML PPT 工具包）**
+   - 原始作者：卡尔的AI沃茨
+   - 版权归属：原作者
+
+6. **AI 视频创作 / 视频解剖（video-gen-skills / video-dissection-skills）**
+   - 原始作者：苍何
+   - 版权归属：原作者
+
+7. **花叔数据分析（huashu-data-pro-skills）**
+   - 原始作者：花叔 (Alchain)
+   - 版权归属：原作者
+
+8. **智能发票（invoice-verify-skills）**
+   - 原始合作方：百望股份
+   - 版权归属：原作者
+
+9. **Makers 开发（makers-skills）**
+   - 原始作者：vincentlli
+   - 版权归属：原作者
+
+10. **MVP 开发（mvp-dev-skills）**
+    - 原始作者：Excellent
+    - 版权归属：原作者
+
+11. **NCRE 计算机等级考试（ncre-exam-skills）**
+    - 原始作者：Xu Qingchu
+    - 版权归属：原作者
+
+12. **KET 备考（ket-prep-skills）**
+    - 原始作者：AI科学局
+    - 版权归属：原作者
+
+13. **其他特邀作者或官方 WorkBuddy 团队产出的 skill**
+    - 版权信息请查阅各 skill 目录内的 `README.md` 或 SKILL.md 头部注释。
+
+如您是原始作者且发现本仓库中的内容未正确署名，或您不同意被如此收录，请通过 Issue 与我们联系 — **我们将在 5 个工作日内**做出修改或下架处理。
+
+## 免责声明 / Disclaimer
+
+本仓库所有 skill 文件**均由用户在 WorkBuddy 平台官方渠道、通过自己个人账号、以普通对话方式生成**。未使用破解安装包、未获取应用文件夹内文件、未反编译、未抓包、未基于模型 API 调用数据逆向等任何技术手段。
+
+不保证本仓库中的 skill 文件与 WorkBuddy 原版 100% 一致（平台侧可能更新，生成结果受 prompt / 模型版本影响）。
+
+**本仓库内容仅供学习与交流参考。**使用者因使用本仓库内容而产生的任何直接或间接损失（包括但不限于法条引用错误、税务规则过时、投资建议偏差、关键业务决策失误），本仓库作者与贡献者概不负责。

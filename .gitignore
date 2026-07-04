@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# WorkBuddy runtime / plugin cache
+.workbuddy/
+__pycache__/
+*.pyc
+
+# OS / logs
+Thumbs.db
+ehthumbs.db
+*.log
