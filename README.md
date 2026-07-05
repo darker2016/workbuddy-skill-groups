@@ -271,6 +271,79 @@ Skill 内容主要由两类来源组装而成：
 - **13 个一级分类、~170+ 个独立专家角色**
 - 总仓库大小：~600KB 纯文本（平台描述性 skill 包，无模型权重）
 
+---
+
+## 6. 普通用户（非开发者）如何利用这些 expert skills
+
+你**不需要写代码**，也能把这份 repo 里的许多 expert skills 立刻用在日常对话 AI 上。
+核心思路：任何一个 `SKILL.md` 本质都是一段很长很详细的「系统提示词」；把它们粘贴到对话中，就相当于「召唤了那个专家」。
+
+### 6.1 在国产免费 AI 中直接用（国内用户优先）
+
+| App | How to use | Good for |
+|-----|-----------|----------|
+| **Doubao (豆包, ByteDance)** | ① Go to "智能体 / AI 应用" → "创建智能体"<br>② Paste a `SKILL.md` into the "系统提示词" (system prompt)<br>③ Keep trigger words as sample prompts in instructions | Copywriting / marketing / content / office / education |
+| **DeepSeek (深度求索)** | ① Paste the full `SKILL.md` at the start of the conversation or as a 【系统消息】<br>② Multi-turn conversations will adhere to the SOP | Investment research / documents / data analysis / code |
+| **Kimi (月之暗面)** | Same as above; Kimi supports long system prompts well | Long documents / legal / journal selection |
+| **Tongyi Qianwen (通义千问, Alibaba)** | ① "创作" → "创建智能体"<br>② Paste as main system prompt | E-commerce copy / marketing / office |
+| **ERNIE Bot (文心一言, Baidu)** | Paste in prompt mode; no deployment needed | Education / everyday Q&A |
+| **Tencent Yuanbao (腾讯元宝)** | Paste as system prompt and start chatting | GPT apps / investment research |
+
+### 6.2 Also works in free overseas AI apps
+
+| App | How to use | Good for |
+|-----|-----------|----------|
+| **ChatGPT (free tier)** | Paste `SKILL.md` at the very beginning of the conversation | General |
+| **Gemini (Google)** | Use "Custom Instructions" or prepend with "system:" in the message | General / office |
+| **Claude.ai (Anthropic)** | Project → System Prompt → paste the full `SKILL.md` | Copywriting / policy / serious content |
+| **HuggingChat** | Any open-weight Chinese-friendly model accepts long system prompts | General |
+| **Poe (Quora)** | Bot settings → System Prompt | General |
+
+### 6.3 Step by step (Doubao example)
+
+1. Pick a skill, e.g. `chatlaw-skills (中文法律咨询团)`.
+2. Open <https://github.com/darker2016/workbuddy-skill-groups/tree/main/chatlaw-skills>.
+3. Copy the full text of each file: `chatlaw-info-intake.md`, `chatlaw-legal-research.md`, `chatlaw-case-precedent.md`, `chatlaw-advice-writer.md`, `chatlaw-report-finalizer.md`.
+4. Create a new "智能体" in Doubao and paste the 5 blocks as one long system prompt.
+5. Send a legal query — you will get an analysis close to what WorkBuddy produces natively.
+
+### 6.4 Limitation: **complex tasks perform weaker than on WorkBuddy**
+
+If you try these skills outside WorkBuddy and the result feels weaker, that is usually expected. Please calibrate your expectations:
+
+- **Sub-agent dispatch is flattened.** On WorkBuddy each member is an "independently scheduled agent"; in a free app you have to compress all member rules into a single conversation context. Complex tasks with many hand-offs easily lose context inside a single thread.
+- **Tool calls cannot be executed natively.** Many skills depend on WorkBuddy tool-calls (knowledge retrieval / private data sources). On these free apps those tools do not exist, so the skill "downgrades" to a guidance prompt.
+- **Cross-session memory & RAG are missing.** WorkBuddy maintains session-level memory and document-level RAG; a single conversation on other apps cannot share complex context across stages.
+- **Role consistency drifts on very long tasks.** With long prompts and many turns, the model tends to "forget which stage it is on and who should be acting".
+
+**Recommended for**:
+
+- One-shot / short flows (< 10 turns in a single session)
+- Skills dominated by one lead role (e.g. copywriting, legal advice, learning diagnosis)
+- "Use the lead's SKILL.md as a high quality system prompt" scenarios
+
+**Not recommended for**:
+
+- Tasks that *require* many agents working in parallel (e.g. 13 philosopher-investors producing simultaneous independent output in `investment-masters-skills`)
+- Tasks that depend on WorkBuddy private data sources / live financial data
+- Very long multi-phase collaborations (e.g. 6-stage MVP development in `mvp-dev-skills`)
+
+**Best practice**: in these free apps, try using **only the lead's `SKILL.md`** as the system prompt and insert member output/input as samples or on demand — this is the most stable approach. For serious or high-stakes conclusions, please use the skills directly on WorkBuddy.
+
+---
+
+## 7. 感谢 WorkBuddy 团队
+
+最后，想手打一段对 WorkBuddy 团队的感谢。
+
+我们刚才所做的所有工作 — 把平台上用过的专家团 skills 复刻成开源仓库 — 全部是**通过普通对话方式、在 WorkBuddy 官方渠道、用我们自己的个人账号生成**的。过程中没有使用破解安装包、没有获取应用文件夹内的文件、没有反编译、没有抓包、没有基于模型 API 调用数据逆向。
+
+但与此同时，我们也**发现 WorkBuddy 团队非常开放**：对这些 skills，官方没有藏着掖着，对照后发现应用内的系统提示词**几乎没有限制、屏蔽、混淆等动作**。换句话说，如果你是一个愿意花时间认真描述需求 + 善于提问的人，完全可以在 WorkBuddy 上"对话式生成"出近乎完美的专有 agent skill —— 这是 WorkBuddy 作为产品最值得被看见的地方。
+
+Everything we did above — re-creating the expert-team skills we had used on the platform as this open-source repo — was **generated through ordinary text conversations on the official WorkBuddy channel, using our own personal accounts**. At no point did we use cracked installers, extract bundled app files, reverse engineer, packet-sniff, or reconstruct outputs from model API calls.
+
+Along the way we also discovered that **the WorkBuddy team is genuinely open**: for these skills, the official app hid nothing; comparing inputs and outputs showed that the in-app system prompts contain almost **no obfuscation, no masking, no deliberate redaction**. In other words: if you are someone willing to spend time describing your needs carefully and asking good questions, you can "author-by-dialogue" a near-perfect proprietary agent skill entirely on WorkBuddy — and that is the most compelling thing about WorkBuddy as a product.
+
 
 # WorkBuddy Expert Teams Skill Hub (Open Source)
 
@@ -531,84 +604,6 @@ Contributions are welcome as long as they improve **skill reusability / team int
 - Total repo size: ~600KB text only (no model weights).
 
 ---
----
-
-## 6. 普通用户（非开发者）如何利用这些 expert skills
-
-你**不需要写代码**，也能把这份 repo 里的许多 expert skills 立刻用在日常对话 AI 上。
-核心思路：任何一个 `SKILL.md` 本质都是一段很长很详细的「系统提示词」；把它们粘贴到对话中，就相当于「召唤了那个专家」。
-
-### 6.1 在国产免费 AI 中直接用（国内用户优先）
-
-| App | 如何使用 | 推荐场景 |
-|-----|---------|---------|
-| **豆包（字节跳动）** | ① 进入「智能体」/「AI 应用」→「创建智能体」<br>② 把某个 skill 目录下 `SKILL.md` 全文粘贴到【系统提示词】<br>③ 指令中保留"触发词"作为示范 prompt | 写作/营销/内容/日常办公/教育 |
-| **DeepSeek（深度求索）** | ① 在对话开头或【系统消息】里粘贴完整的 SKILL.md<br>② 多轮对话可让 DeepSeek 严格遵循工作流 | 投研/文档/数据分析/代码辅助 |
-| **Kimi（月之暗面）** | 同上，Kimi 对长 system prompt 的支持很好 | 长文档分析/法律/选刊 |
-| **通义千问（阿里云）** | ①「创作」→「创建智能体」<br>② 粘贴为主系统提示 | 电商文案/营销/办公 |
-| **文心一言（百度）** | 提示词模式直接粘贴；不需要开发部署 | 教育/日常问答 |
-| **腾讯元宝** | 粘贴为 system prompt 即可使用 | GPT 应用/投研 |
-
-### 6.2 在国外免费 AI 上同样可用
-
-| App | 如何使用 | 推荐场景 |
-|-----|---------|---------|
-| **ChatGPT 免费版** | 在对话开头粘贴 SKILL.md（或让 ChatGPT 的系统提示允许长文本） | 通用 |
-| **Gemini（Google）** | 通过「Custom Instructions」或在对话前用"system:"前缀粘贴 | 通用/办公 |
-| **Claude.ai（Anthropic）** | 在 Project 中配置 System Prompt，粘贴 SKILL.md 全文 | 写作/政策/严肃内容 |
-| **HuggingChat** | 任意华文开源模型都支持长 system prompt | 通用 |
-| **Poe（Quora）** | Bot 设置里粘贴 system prompt | 通用 |
-
-### 6.3 步骤示例（以豆包为例）
-
-1. 选一个你想用的 skill，比如 `chatlaw-skills（中文法律咨询团）`
-2. 打开 <https://github.com/darker2016/workbuddy-skill-groups/tree/main/chatlaw-skills>
-3. 依次把 `chatlaw-info-intake.md` `chatlaw-legal-research.md` `chatlaw-case-precedent.md` `chatlaw-advice-writer.md` `chatlaw-report-finalizer.md` 全文复制下来
-4. 在豆包里创建智能体，把 5 段内容合并为一条 long system prompt
-5. 发送一条法律咨询试试 — 你会得到一个接近 WorkBuddy 的专业分析
-
-### 6.4 局限：**复杂任务在 WorkBuddy 之外会弱一些**
-
-如果你尝试后发现效果没有 WorkBuddy 原生那么强，通常是以下几个原因 — **请先调整预期**：
-
-- **子 agent 调度被压扁。** WorkBuddy 里每个 member 是一个「被独立调度的 agent」；在免费 app 里你只能把所有成员规则压进同一个对话上下文。当任务复杂、成员间交接多时，单轮对话会丢失上下文。
-- **工具调用无法原生执行。** 许多 skill 内部依赖 WorkBuddy 的 tool calls（知识检索 / 内部数据源）。在 free apps 里这些工具不存在，skill 会"降级"为纯 prompt 指引。
-- **Agent 内存与 RAG 缺失。** WorkBuddy 维持了会话级记忆和文档级 RAG；单 app 单对话做不到多阶段共享复杂上下文。
-- **角色一致性在长事务里漂移。** 当 prompt 很长 + 轮数很多时，模型容易"忘记自己是第几阶段、该谁出场"。
-
-**建议用于**：
-
-- 一次性 / 短任务（单次 < 10 轮对话）
-- 单角色为主的 skill（如 copywriting、法律、学情诊断）
-- "先把 Skill 的主理人 prompt 用作高质量 system prompt"的场景
-
-**不建议用于**：
-
-- 需要多 agent 真正并行计算（如投资大师团 13 位哲学家同时独立输出）
-- 需要 WorkBuddy 私有数据源 / 实时金融数据的场景
-- 长事务协作（如跨 6 阶段的 MVP 开发）
-
-**最佳实践**：先在这些 free app 里试试用**主理人 SKILL.md**（而非成员）作为 system prompt，把成员文件作为任务指令或按需插入，效果最稳定。
-
----
-
-## 7. 感谢 WorkBuddy 团队
-
-最后，想手打一段对 WorkBuddy 团队的感谢。
-
-我们刚才所做的所有工作 — 把平台上用过的专家团 skills 复刻成开源仓库 — 全部是**通过普通对话方式、在 WorkBuddy 官方渠道、用我们自己的个人账号生成**的。过程中没有使用破解安装包、没有获取应用文件夹内的文件、没有反编译、没有抓包、没有基于模型 API 调用数据逆向。
-
-但与此同时，我们也**发现 WorkBuddy 团队非常开放**：对这些 skills，官方没有藏着掖着，对照后发现应用内的系统提示词**几乎没有限制、屏蔽、混淆等动作**。换句话说，如果你是一个愿意花时间认真描述需求 + 善于提问的人，完全可以在 WorkBuddy 上"对话式生成"出近乎完美的专有 agent skill —— 这是 WorkBuddy 作为产品最值得被看见的地方。
-
----
-
-# WorkBuddy Expert Teams Skill Hub (Open Source)
-
-> **Usage notice**: All skill files in this repo are **generated by end users through ordinary text conversations with the official WorkBuddy platform using their own personal accounts**. No cracked installers, no extraction of bundled app files, no reverse engineering, no packet sniffing, and no reverse-engineering by model-API-call data — none of these technical means were employed. No guarantee that these skills are 100% identical to the WorkBuddy originals (the platform may update; outputs depend on prompt / model version).
-
-*以下为英文版 §6 / §7，与上方中文内容一一对应。*
-
----
 
 ## 6. How non-developers can use these expert skills
 
@@ -671,8 +666,14 @@ If you try these skills outside WorkBuddy and the result feels weaker, that is u
 
 ## 7. Thanks to the WorkBuddy team
 
-Finally, a personal thank-you to the WorkBuddy team.
+最后，想手打一段对 WorkBuddy 团队的感谢。
+
+我们刚才所做的所有工作 — 把平台上用过的专家团 skills 复刻成开源仓库 — 全部是**通过普通对话方式、在 WorkBuddy 官方渠道、用我们自己的个人账号生成**的。过程中没有使用破解安装包、没有获取应用文件夹内的文件、没有反编译、没有抓包、没有基于模型 API 调用数据逆向。
+
+但与此同时，我们也**发现 WorkBuddy 团队非常开放**：对这些 skills，官方没有藏着掖着，对照后发现应用内的系统提示词**几乎没有限制、屏蔽、混淆等动作**。换句话说，如果你是一个愿意花时间认真描述需求 + 善于提问的人，完全可以在 WorkBuddy 上"对话式生成"出近乎完美的专有 agent skill —— 这是 WorkBuddy 作为产品最值得被看见的地方。
 
 Everything we did above — re-creating the expert-team skills we had used on the platform as this open-source repo — was **generated through ordinary text conversations on the official WorkBuddy channel, using our own personal accounts**. At no point did we use cracked installers, extract bundled app files, reverse engineer, packet-sniff, or reconstruct outputs from model API calls.
 
 Along the way we also discovered that **the WorkBuddy team is genuinely open**: for these skills, the official app hid nothing; comparing inputs and outputs showed that the in-app system prompts contain almost **no obfuscation, no masking, no deliberate redaction**. In other words: if you are someone willing to spend time describing your needs carefully and asking good questions, you can "author-by-dialogue" a near-perfect proprietary agent skill entirely on WorkBuddy — and that is the most compelling thing about WorkBuddy as a product.
+
+---
