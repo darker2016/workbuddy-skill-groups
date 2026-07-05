@@ -531,3 +531,60 @@ Contributions are welcome as long as they improve **skill reusability / team int
 - **450+ md files** (SKILL.md / README.md / agents / members / references)
 - **13 top-level categories, ~170+ distinct expert roles**
 - Total repo size: ~600KB text only (no model weights).
+
+---
+
+## 6. 普通用户（非开发者）如何利用这些 expert skills
+
+你**不需要写代码**，也能把这份 repo 里的许多 expert skills 立刻用在日常对话 AI 上。
+核心思路：任何一个 `SKILL.md` 本质都是一段很长很详细的「系统提示词」；把它们粘贴到对话中，就相当于「召唤了那个专家」。
+
+### 6.1 在国产免费 AI 中直接用（国内用户优先）
+
+| App | 如何使用 | 推荐场景 |
+|-----|---------|---------|
+| **豆包（字节跳动）** | ① 进入「智能体」/「AI 应用」→「创建智能体」<br>② 把某个 skill 目录下 `SKILL.md` 全文粘贴到【系统提示词】<br>③ 指令中保留"触发词"作为示范 prompt | 写作/营销/内容/日常办公/教育 |
+| **DeepSeek（深度求索）** | ① 在对话开头或【系统消息】里粘贴完整的 SKILL.md<br>② 多轮对话可让 DeepSeek 严格遵循工作流 | 投研/文档/数据分析/代码辅助 |
+| **Kimi（月之暗面）** | 同上，Kimi 对长 system prompt 的支持很好 | 长文档分析/法律/选刊 |
+| **通义千问（阿里云）** | ①「创作」→「创建智能体」<br>② 粘贴为主系统提示 | 电商文案/营销/办公 |
+| **文心一言（百度）** | 提示词模式直接粘贴；不需要开发部署 | 教育/日常问答 |
+| **腾讯元宝** | 粘贴为 system prompt 即可使用 | GPT 应用/投研 |
+
+### 6.2 在国外免费 AI 上同样可用
+
+| App | 如何使用 | 推荐场景 |
+|-----|---------|---------|
+| **ChatGPT 免费版** | 在对话开头粘贴 SKILL.md（或让 ChatGPT 的系统提示允许长文本） | 通用 |
+| **Gemini（Google）** | 通过「Custom Instructions」或在对话前用"system:"前缀粘贴 | 通用/办公 |
+| **Claude.ai（Anthropic）** | 在 Project 中配置 System Prompt，粘贴 SKILL.md 全文 | 写作/政策/严肃内容 |
+| **HuggingChat** | 任意华文开源模型都支持长 system prompt | 通用 |
+| **Poe（Quora）** | Bot 设置里粘贴 system prompt | 通用 |
+
+### 6.3 步骤示例（以豆包为例）
+
+1. 选一个你想用的 skill，比如 `chatlaw-skills（中文法律咨询团）`
+2. 打开 <https://github.com/darker2016/workbuddy-skill-groups/tree/main/chatlaw-skills>
+3. 依次把 `chatlaw-info-intake.md` `chatlaw-legal-research.md` `chatlaw-case-precedent.md` `chatlaw-advice-writer.md` `chatlaw-report-finalizer.md` 全文复制下来
+4. 在豆包里创建智能体，把 5 段内容合并为一条 long system prompt
+5. 发送一条法律咨询试试 — 你会得到一个接近 WorkBuddy 的专业分析
+
+### 6.4 局限：**复杂任务在 WorkBuddy 之外会弱一些**
+
+如果你尝试后发现效果没有 WorkBuddy 原生那么强，通常是以下几个原因 — **请先调整预期**：
+
+- **子 agent 调度被压扁。** WorkBuddy 里每个 member 是一个「被独立调度的 agent」；在免费 app 里你只能把所有成员规则压进同一个对话上下文。当任务复杂、成员间交接多时，单轮对话会丢失上下文。
+- **工具调用无法原生执行。** 许多 skill 内部依赖 WorkBuddy 的 tool calls（知识检索 / 内部数据源）。在 free apps 里这些工具不存在，skill 会"降级"为纯 prompt 指引。
+- **Agent 内存与 RAG 缺失。** WorkBuddy 维持了会话级记忆和文档级 RAG；单 app 单对话做不到多阶段共享复杂上下文。
+- **角色一致性在长事务里漂移。** 当 prompt 很长 + 轮数很多时，模型容易"忘记自己是第几阶段、该谁出场"。
+
+**建议用于**：
+- 一次性 / 短任务（单次 < 10 轮对话）
+- 单角色为主的 skill（如 copywriting、法律、学情诊断）
+- "先把 Skill 的主理人 prompt 用作高质量 system prompt"的场景
+
+**不建议用于**：
+- 需要多 agent 真正并行计算（如投资大师团 13 位哲学家同时独立输出）
+- 需要 WorkBuddy 私有数据源 / 实时金融数据的场景
+- 长事务协作（如跨 6 阶段的 MVP 开发）
+
+**最佳实践**：先在这些 free app 里试试用**主理人 SKILL.md**（而非成员）作为 system prompt，把成员文件作为任务指令或按需插入，效果最稳定。
